@@ -31,13 +31,13 @@ class Offer(Base):
     short_description: Mapped[str] = mapped_column(Text)
     benefits: Mapped[str] = mapped_column(Text)
     salary_info: Mapped[str] = mapped_column(String(255))
-    bonuses: Mapped[str] = mapped_column(String(512), default="")
+    bonuses: Mapped[str | None] = mapped_column(String(512), default="", nullable=True)
     image_path: Mapped[str | None] = mapped_column(String(512), nullable=True)
     referral_link: Mapped[str] = mapped_column(String(1024))
     payout: Mapped[float | None] = mapped_column(Float, nullable=True)
     cta_text: Mapped[str] = mapped_column(String(128), default="🚀 Занять рабочее место")
-    is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
-    is_paused: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_active: Mapped[bool | None] = mapped_column(Boolean, default=True, index=True, nullable=True)
+    is_paused: Mapped[bool | None] = mapped_column(Boolean, default=False, nullable=True)
     sort_order: Mapped[int] = mapped_column(default=0)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
